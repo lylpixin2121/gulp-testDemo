@@ -1,0 +1,14 @@
+body {
+  background: #fff; }
+
+#box {
+  width: 500px;
+  height: 500px; }
+  #box h1 {
+    font-size: 40px;
+    line-height: 40px; }
+  #box a {
+    color: #000;
+    font-size: 12px; }
+    #box a:hover {
+      color: #f00; }
