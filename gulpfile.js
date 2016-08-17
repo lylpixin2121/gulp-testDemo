@@ -35,7 +35,7 @@ gulp.task("copy",["css","html","js"]);
 //正式的从这里开始
 //创建一个css的处理任务
 gulp.task("sass",function(){
-	return gulp.src("./src/css/*.scss")
+	return gulp.src("./src/css/index.scss")
 	.pipe(sass())
 	.pipe(gulp.dest("./dist/static"))
 })
@@ -54,7 +54,7 @@ gulp.task("onlineBuild",["html","sass","ugli"]);
 
 // 添加了监听以及实时刷新功能的task gulp
 
-gulp.task("dev",["sass:dev","tpl:dev","js:dev","sprite:dev"],function(){
+gulp.task("dev",["sprite:dev","sass:dev","tpl:dev","js:dev"],function(){
 	browserSync.init({
 		server : {
 			baseDir : "./dist" //设置服务器的根目录为dist
@@ -75,7 +75,7 @@ gulp.task("js:dev",function(){
 })
 
 gulp.task("sass:dev",function(){
-	return gulp.src("./src/css/*.scss")
+	return gulp.src(["./src/css/*.scss","!src/css/sprite.scss"])    //
 	.pipe(sass())
 	.pipe(gulp.dest("./dist/static/"))
 	.pipe(reload({stream:true}));
@@ -88,13 +88,19 @@ gulp.task("tpl:dev",function(){
 })
 
 gulp.task("sprite:dev",function(){
-	return gulp.src("./src/images/*.png")
+	var spriteData = gulp.src("./src/images/*.png")
 	.pipe(spritesmith({
 		imgName: 'sprite.png',
-    	cssName: 'sprite.css',
-    	padding  : 2
+		imgPath : "./images/sprite.png",
+    	cssName: 'sprite.scss',
+    	// cssTemplate: 'scss.template.mustache',
+    	padding  : 2,
+    	// cssOpts: {options:'spriteSrc'},
+    	// cssVarMap: function(sprite) {
+     //    	sprite.name = 'icon-' + sprite.name
+     //  	}
 	}))
-	.pipe(gulp.dest("./dist/static/images"))
+	//注意这个地方可以将img 和 css分开指向不同目录 
+	spriteData.img.pipe(gulp.dest("./dist/static/images"))
+	spriteData.css.pipe(gulp.dest("./src/css/"))
 })
-
-

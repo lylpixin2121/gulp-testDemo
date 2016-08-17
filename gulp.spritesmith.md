@@ -16,7 +16,7 @@
  - **imgPath** 类型String 配置css中对应image的图片路径名
  - **padding** 类型Number 配置雪碧图中两图之间预留的像素值
  	- 默认图片间不使用padding,即为(0)
- - **algorithm** 类型String 配置如何打包图片的算法![算法](algorithm.png)
+ - **algorithm** 类型String 配置如何打包图片的算法![算法](https://raw.githubusercontent.com/lylpixin2121/gulp-testDemo/master/algorithm.png)
  	- 默认我们使用binary-tree(二进制树),尽可能有效率的打包图片
  	- alt-diagonal(反对角线),这种方式取保图片溢出的时候无重叠
  	- diagonal(正对角线)
@@ -42,7 +42,7 @@
  		- [demo](https://www.npmjs.com/package/gulp.spritesmith/#template-function)
  	- 更多模板信息 查看 [地址](https://www.npmjs.com/package/gulp.spritesmith/#templating)
  - **cssHandlebarsHelpers** 
- - **cssVarMap**
+ - **cssVarMap** 类型：function 用于遍历每一个文件名到对应的css变量
  - **cssSpritesheetName**
  - **cssOpts**
 
