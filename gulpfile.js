@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var sass = require("gulp-sass");
 var uglify = require("gulp-uglify");
+var spritesmith = require('gulp.spritesmith');
 var browserSync = require("browser-sync");//浏览器同步
 var reload = browserSync.reload;
 
@@ -53,13 +54,14 @@ gulp.task("onlineBuild",["html","sass","ugli"]);
 
 // 添加了监听以及实时刷新功能的task gulp
 
-gulp.task("dev",["sass:dev","tpl:dev","js:dev"],function(){
+gulp.task("dev",["sass:dev","tpl:dev","js:dev","sprite:dev"],function(){
 	browserSync.init({
 		server : {
 			baseDir : "./dist" //设置服务器的根目录为dist
 		},
 		notify : false //开启静默模式
 	})
+
 	gulp.watch("./src/css/*scss",["sass:dev"])
 	gulp.watch("./src/js/*.js",["js:dev"])
 	gulp.watch("./src/tpl/*.html",["tpl:dev"])
@@ -78,11 +80,21 @@ gulp.task("sass:dev",function(){
 	.pipe(gulp.dest("./dist/static/"))
 	.pipe(reload({stream:true}));
 })
+
 gulp.task("tpl:dev",function(){
 	return gulp.src("./src/tpl/*.html")
 	.pipe(gulp.dest("./dist"))
 	.pipe(reload({stream : true}));
 })
 
+gulp.task("sprite:dev",function(){
+	return gulp.src("./src/images/*.png")
+	.pipe(spritesmith({
+		imgName: 'sprite.png',
+    	cssName: 'sprite.css',
+    	padding  : 2
+	}))
+	.pipe(gulp.dest("./dist/static/images"))
+})
 
 

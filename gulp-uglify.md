@@ -16,3 +16,5 @@
 
 > 4、**some 表示 目前已经弃用** 
 
+PS：注意 git push -u origin master 的用法 神奇
+

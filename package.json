@@ -4,7 +4,8 @@
   "description": "a test project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "rimraf dist && gulp dev",
+    "build": "gulp build"
   },
   "keywords": [
     "my",
@@ -17,6 +18,7 @@
     "browser-sync": "^2.14.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "gulp.spritesmith": "^6.2.1"
   }
 }
