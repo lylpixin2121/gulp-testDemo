@@ -1,4 +1,4 @@
-## gulp.spritesmith
+	## gulp.spritesmith
 > 此插件用于拼接图片为雪碧图 同时生成对应的样式表，并且还支持输出 Sass stylus less甚至JSON等多种格式
 
 ## 参数配置 param options
